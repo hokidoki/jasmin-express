@@ -1,0 +1,46 @@
+.main-container{
+    width: 100vw;
+    height: 100vh;
+}
+
+.login-box{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:  translate(-50%,-50%);
+    border: 1px solid rgb(102, 102, 102);
+    background-color: aliceblue;
+}
+
+.login-h1{
+    text-align: center;
+}
+
+.login-input-container{
+    margin-top: 15px;
+    padding : 0px 15px 5px 15px;
+}
+
+.input{
+    display: block;
+    width: 80%;
+    height: 30px;
+    margin : 0 auto;
+}
+
+.login-input-box{
+    margin-top: 15px;
+}
+
+.login-tool-button{
+    height: 50px;
+}
+
+.login-tool-container{
+    width: 370px;
+    position: absolute;
+    bottom: 15px;
+}
+
