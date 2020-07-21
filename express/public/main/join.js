@@ -32,7 +32,11 @@ const join = () => {
             return
         }
 
-        alert("good");
+        axios.post('http://localhost:3000/service/join',{
+            id,
+            email,
+            password_1
+        })
     }
     _join(id,email,pw_1,pw_2);
 }
