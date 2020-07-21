@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://localhost:3000/main/login.css">
+    <script src="http://localhost:3000/main/join.js"></script>
+</head>
+<body>
+        <div class="main-container">
+            <div class="login-box">
+                <h1 class="login-h1">SNS</h1>
+                <div class="login-input-container">
+                    <div class="login-input-box">
+                        <input class="input" type="text" id="login-id" placeholder="ID를 입력해주세요.">
+                    </div>
+                    <div class="login-input-box">
+                        <input class="input" type="text" id="login-email" placeholder="이메일을 입력해주세요">
+                    </div>
+                    <div class="login-input-box">
+                        <input class="input" type="password" id="login-pw-1" placeholder="Password를 입력해주세요.">
+                        <input class="input" type="password" id="login-pw-2" placeholder="Password를 재확인 해주세요">
+                    </div>
+                </div>
+                <div class="login-tool-container login-input-container">
+                    <button class="login-tool-button login-input-box login-button input" onclick="join()">회원가입</button>
+                    <a href="http://localhost:3000/"><button class="login-tool-button login-input-box input">취소</button></a>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
