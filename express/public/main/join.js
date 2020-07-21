@@ -36,6 +36,8 @@ const join = () => {
             id,
             email,
             password_1
+        }).then((res)=>{
+            console.log(res);
         })
     }
     _join(id,email,pw_1,pw_2);
