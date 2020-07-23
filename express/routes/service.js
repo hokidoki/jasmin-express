@@ -25,9 +25,9 @@ router.post('/join', function (req, res, next) {
     }
     console.log(result);
     if(result[0][0].status){
-      res.send("id already used");
+      res.status(202).send("id already used");
     }else{
-      res.send("OK");
+      res.status(201).send("OK");
     }
   });
 });

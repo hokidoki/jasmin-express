@@ -37,7 +37,11 @@ const join = () => {
             email,
             password_1
         }).then((res)=>{
-            console.log(res);
+            if(res.status === 202){
+                alert("이미 존재하는 id입니다.");
+                return;
+            }
+            alert("회원가입을 축하드립니다.");
         })
     }
     _join(id,email,pw_1,pw_2);
