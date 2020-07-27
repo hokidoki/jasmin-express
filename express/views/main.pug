@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="http://localhost:3000/stylesheets/main.css")
+        title SNS
+    body
+        .head-bar
+            h1 SNS
+            .search-box
+                input(type="text")
+                button 찾기
+        .main-container
+            .editor-container
+                textarea#editor(cols="30", rows="10")
+                div
+                    button#write-button 글쓰기
+        

@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding : 0;
+    background-origin: 0;
+}
+
+.head-bar{
+    width: 100%;
+    position: fixed;
+    height: 50px;
+    background-color: rgb(255, 194, 119);
+}
+
+.head-bar h1{
+    display: inline-block;
+    line-height: 50px;
+    margin-left: 15px;
+}
+
+.search-box{
+    display: inline-block;
+    position: absolute;
+    top: 25%;
+    right : 15px;
+}
+
+.main-container{
+    padding-top: 50px;
+    height: 100vh;
+    background: bisque;
+}
+
+.editor-container{
+    box-sizing: border-box;
+    padding: 20px;
+    width: 400px;
+    height: 300px;
+    background: burlywood;
+    margin: 15px auto;
+}
+
+#editor{
+    width: 100%;
+    height: 80%;
+}
+
+#write-button{
+    width: 100%;
+    height: 40px;
+}
