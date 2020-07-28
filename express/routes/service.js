@@ -13,7 +13,9 @@ router.post('/login',function (req,res,next){
     }
 
     if(result[0][0].isValid){
-      res.send("성공");
+      res.cookie('express',`${req.body.id}`,{
+        maxAge : 100000
+      }).send("성공")
     }else{
       res.send("비밀번호와 아이디를 확인해주세요");
     }
@@ -39,8 +41,9 @@ router.post('/join', function (req, res, next) {
       next(err);
       return;
     }
-
+    
     if(result[0][0].status){
+      
       res.status(202).send("id already used");
     }else{
       res.status(201).send("OK");

@@ -17,7 +17,8 @@
             id,
             pw
         }).then((res)=>{
-            alert(`${res.data}`)
+            alert(`${res.data}`);
+            window.location.href = 'http://localhost:3000/main';
         })
     })}
 )();
