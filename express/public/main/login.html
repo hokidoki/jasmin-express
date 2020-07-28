@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="http://localhost:3000/main/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
         <div class="main-container">
@@ -12,17 +13,18 @@
                 <h1 class="login-h1">SNS</h1>
                 <div class="login-input-container">
                     <div class="login-input-box">
-                        <input class="input" type="text" placeholder="ID를 입력해주세요.">
+                        <input id="login-id" class="input" type="text" placeholder="ID를 입력해주세요.">
                     </div>
                     <div class="login-input-box">
-                        <input class="input" type="password" placeholder="Password를 입력해주세요.">
+                        <input id="login-pw" class="input" type="password" placeholder="Password를 입력해주세요.">
                     </div>
                 </div>
                 <div class="login-tool-container login-input-container">
-                    <button class="login-tool-button login-input-box login-button input">로그인</button>
+                    <button id="login-button" class="login-tool-button login-input-box login-button input">로그인</button>
                     <a href="http://localhost:3000/service/join"><button class="login-tool-button login-input-box input">회원가입</button></a>
                 </div>
             </div>
         </div>
-</body>
+</body> 
+<script src="http://localhost:3000/main/login.js"></script>
 </html>

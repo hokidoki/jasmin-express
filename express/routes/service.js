@@ -4,6 +4,22 @@ const fs = require('fs');
 const mysql = require('../db/mysql').init();
 
 
+router.post('/login',function (req,res,next){
+
+  mysql.query(`call jasmin_express.login('${req.body.id}','${req.body.pw}')`,(err,result)=>{
+    if(err){
+      res.status(403).render('error');
+      return;
+    }
+
+    if(result[0][0].isValid){
+      res.send("성공");
+    }else{
+      res.send("비밀번호와 아이디를 확인해주세요");
+    }
+  })
+})
+
 /* GET home page. */
 router.get('/join', function (req, res, next) {
   fs.readFile('./public/main/join.html', 'UTF-8', (err, data) => {
@@ -23,7 +39,7 @@ router.post('/join', function (req, res, next) {
       next(err);
       return;
     }
-    console.log(result);
+
     if(result[0][0].status){
       res.status(202).send("id already used");
     }else{
