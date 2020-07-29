@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const fs = require('fs');
-
+const mainAccess = require('./middleware/cookie').mainAccess;
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', mainAccess,function(req, res, next) {
   // console.log(__dirname)
  
   fs.readFile('./public/main/login.html','UTF-8',(err,data)=>{

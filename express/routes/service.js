@@ -2,9 +2,12 @@ var express = require('express');
 var router = express.Router();
 const fs = require('fs');
 const mysql = require('../db/mysql').init();
-
+const moment = require('moment');
+require('moment-timezone');
+moment.tz.setDefault('Asia/Seoul');
 
 router.post('/login',function (req,res,next){
+  const expires = moment().add(1,'hours').format('ddd, DD MMM YYYY HH:mm:ss')+' GMT';
 
   mysql.query(`call jasmin_express.login('${req.body.id}','${req.body.pw}')`,(err,result)=>{
     if(err){
@@ -14,7 +17,7 @@ router.post('/login',function (req,res,next){
 
     if(result[0][0].isValid){
       res.cookie('express',`${req.body.id}`,{
-        maxAge : 100000
+        Expires : expires
       }).send("성공")
     }else{
       res.send("비밀번호와 아이디를 확인해주세요");
