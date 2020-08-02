@@ -7,6 +7,7 @@ module.exports = {
         }
     },
     mainAccess : function (req,res,next){
+        console.log(req.cookies.express)
         if(req.cookies.express){
             res.redirect('/main');
         }else{
