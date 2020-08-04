@@ -1,6 +1,6 @@
 
 
-const displayArticle = (articles) => {
+const displayArticle = (isLatest,articles) => {
     const articleContainer = document.getElementById('article-container')
     
     function makeArticleBox({No,date,writer,article}){
@@ -47,12 +47,16 @@ const displayArticle = (articles) => {
         div.appendChild(makeArticleBox(article))
     })
 
-
-    if(articleContainer.childNodes[0]){
-        articleContainer.insertBefore(div,articleContainer.childNodes[0]);
+    if(isLatest){
+        if(articleContainer.childNodes[0]){
+            articleContainer.insertBefore(div,articleContainer.childNodes[0]);
+        }else{
+            articleContainer.appendChild(div);
+        }
     }else{
-        articleContainer.appendChild(div);
+        articleContainer.insertBefore(div,articleContainer.childNodes[articleContainer.childNodes.length -1]);
     }
+    
     
 }
 
@@ -66,7 +70,28 @@ const displayArticle = (articles) => {
 
             axios.post('http://localhost:3000/article',{
                 article : editor.value
-            }).then((res)=> displayArticle(res.data))
+            }).then((res)=> displayArticle(true,res.data))
         })
     }
 )(document.getElementById("write-button"),document.getElementById("editor"))
+var init =null 
+var last = false
+function getArticle(oldestNo){
+    if((!init || oldestNo === init)){
+        const button = document.getElementById('get-article-button');
+        axios.get(`http://localhost:3000/article?from=${oldestNo}&limit=${oldestNo > 10 ? 10 : oldestNo}`).then((res)=>{
+            if(res.data.length < 10){
+                last = true;
+            }else{
+                
+                displayArticle(false,res.data)
+                init = res.data[res.data.length - 1].No;
+                button.addEventListener('click',()=>getArticle(res.data[res.data.length - 1].No))
+                if(last){
+                    button.removeEventListener('click',getArticle)
+                }
+            }
+        })
+    }
+    
+}

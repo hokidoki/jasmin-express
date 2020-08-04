@@ -81,3 +81,11 @@
 .head-flex-container .writer{
     flex-grow: 2;
 }
+
+#get-article-button{
+    display: block;
+    height: 25px;
+    width: 400px;
+    margin : 0 auto;
+    margin-top: 15px;
+}
