@@ -18,4 +18,19 @@ html(lang="en")
                 div
                     button#write-button 글쓰기
             #article-container
+                div
+                    each article in articleList
+                        .articleBox
+                            .article-flex-container
+                                .head-flex-container
+                                    .no #{article.No}
+                                    .date #{article.date}
+                                    .writer #{article.writer}
+                                .article #{article.article}
+                        
+
+                        
+                    
+                
+                    
     script(src="http://localhost:3000/javascripts/main.js")
