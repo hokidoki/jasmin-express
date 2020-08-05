@@ -58,17 +58,3 @@ const displayArticle = (isLatest, articles) => {
 
 }
 
-(
-    function (button, editor) {
-        button.addEventListener('click', () => {
-            if (editor.value.length < 10) {
-                alert("글은 최소 10자리 이상되어야 합니다.");
-                return;
-            }
-
-            axios.post('http://localhost:3000/article', {
-                article: editor.value
-            }).then((res) => displayArticle(true, res.data))
-        })
-    }
-)(document.getElementById("write-button"), document.getElementById("editor"))

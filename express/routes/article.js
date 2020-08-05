@@ -9,8 +9,7 @@ router.post('/', isValidAccess, function (req, res, next) {
             next(new Error("글 생성에 실패하였습니다."));
             return;
         }
-
-        res.send(result[0]);
+        res.redirect(`http://localhost:3000/article?from=${result[0][0].No}&to=${req.body.latestNo}&limit=null`)
     })
 })
 

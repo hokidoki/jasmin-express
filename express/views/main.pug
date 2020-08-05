@@ -34,9 +34,26 @@ html(lang="en")
     script(src="http://localhost:3000/javascripts/main.js")
     script.
         (
-            function (getOldButton,getLatestButton) {
+            function (getOldButton,getLatestButton,writeButton,editor) {
                 let oldestNo = #{_oldestNo};
                 let latestNo = #{_latestNo};
+
+                writeButton.addEventListener('click',() => {
+                    if (editor.value.length < 10) {
+                        alert("글은 최소 10자리 이상되어야 합니다.");
+                        return;
+                    }
+
+                    axios.post('http://localhost:3000/article', {
+                    article: editor.value,
+                    latestNo : latestNo
+                    }).then((res) => {
+                        displayArticle(true, res.data);
+                        latestNo = res.data.length ? res.data[0].No : latestNo;
+                    
+                    })
+                })
+
 
                 getLatestButton.addEventListener('click',()=>{
                     axios.get(`http://localhost:3000/article?from=null&to=${latestNo}&limit=null`).then((res) => {
@@ -56,4 +73,8 @@ html(lang="en")
                     })
                 })
             }
-        )(document.getElementById('get-old-articles'),document.getElementById('get-latest-articles'));
+        )(document.getElementById('get-old-articles'),
+        document.getElementById('get-latest-articles'),
+        document.getElementById("write-button"),
+        document.getElementById("editor"));
+        
