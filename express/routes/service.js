@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 const fs = require('fs');
 const mysql = require('../db/mysql').init();
+
 const moment = require('moment');
 require('moment-timezone');
 moment.tz.setDefault('Asia/Seoul');
+
 
 router.post('/login',function (req,res,next){
   const expires = moment().add(1,'hours').format('ddd, DD MMM YYYY HH:mm:ss')+' GMT';
@@ -25,6 +27,10 @@ router.post('/login',function (req,res,next){
 })
 
 /* GET home page. */
+router.post('/login',function(req,res,next){
+  
+});
+
 router.get('/join', function (req, res, next) {
   fs.readFile('./public/main/join.html', 'UTF-8', (err, data) => {
     if (err) {

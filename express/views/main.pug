@@ -17,6 +17,7 @@ html(lang="en")
                 textarea#editor(cols="30", rows="10")
                 div
                     button#write-button 글쓰기
+            button(class="get-article-button",id="get-latest-articles") 새로운 글 불러오기
             #article-container
                 div
                     each article in articleList
@@ -27,7 +28,22 @@ html(lang="en")
                                     .date #{article.date}
                                     .writer #{article.writer}
                                 .article #{article.article}
-                button(id="get-article-button" onclick=getArticleFunc) 글 불러오기
+                button(class="get-article-button",id="get-old-articles") 예전 글 불러오기
                         
                                
     script(src="http://localhost:3000/javascripts/main.js")
+    script.
+        (
+            function (getOldButton) {
+                let latestNo = #{_latestNo};
+                getOldButton.addEventListener('click',getArticle = ()=>{
+                    axios.get(`http://localhost:3000/article?from=${latestNo}&limit=${latestNo > 10 ? 10 : latestNo +1}`).then((res) => {
+                        if (res.data.length < 10) {
+                            getOldButton.removeEventListener('click',getArticle)
+                        }
+                        displayArticle(false, res.data);
+                        latestNo = res.data.length ? res.data[res.data.length - 1].No : 0;
+                    })
+                })
+            }
+        )(document.getElementById('get-old-articles'));
