@@ -15,15 +15,17 @@ router.post('/', isValidAccess, function (req, res, next) {
 })
 
 router.get('/', isValidAccess, function (req, res, next) {
-    mysql.query(`call get_article(false,'${Number(req.query.from)}','${Number(req.query.limit)}')`, (err, result) => {
+    mysql.query(`call get_article(false,${!isNaN(req.query.from) ? Number(req.query.from) : 'null'},
+    ${!isNaN(req.query.to) ? Number(req.query.to) : 'null'},
+    ${!isNaN(req.query.limit) ? Number(req.query.limit) : 'null'})`, (err, result) => {
         if(err){
+            console.log(err);
             next(new Error("문제가 발생하였습니다."));
             return;
         }
         res.send(result[0])
     })
 })
-
 
 module.exports = router;
 

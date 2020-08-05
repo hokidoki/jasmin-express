@@ -34,16 +34,26 @@ html(lang="en")
     script(src="http://localhost:3000/javascripts/main.js")
     script.
         (
-            function (getOldButton) {
+            function (getOldButton,getLatestButton) {
+                let oldestNo = #{_oldestNo};
                 let latestNo = #{_latestNo};
+
+                getLatestButton.addEventListener('click',()=>{
+                    axios.get(`http://localhost:3000/article?from=null&to=${latestNo}&limit=null`).then((res) => {
+                        displayArticle(true, res.data);
+                        latestNo = res.data.length ? res.data[0].No : latestNo;
+                    })
+                })
+
+
                 getOldButton.addEventListener('click',getArticle = ()=>{
-                    axios.get(`http://localhost:3000/article?from=${latestNo}&limit=${latestNo > 10 ? 10 : latestNo +1}`).then((res) => {
+                    axios.get(`http://localhost:3000/article?from=${oldestNo}&to=null&limit=${oldestNo > 10 ? 10 : latestNo +1}`).then((res) => {
                         if (res.data.length < 10) {
                             getOldButton.removeEventListener('click',getArticle)
                         }
                         displayArticle(false, res.data);
-                        latestNo = res.data.length ? res.data[res.data.length - 1].No : 0;
+                        oldestNo = res.data.length ? res.data[res.data.length - 1].No : 0;
                     })
                 })
             }
-        )(document.getElementById('get-old-articles'));
+        )(document.getElementById('get-old-articles'),document.getElementById('get-latest-articles'));
